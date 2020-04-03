@@ -1,0 +1,34 @@
+.promotions {
+  .promotion {
+    display: flex;
+  }
+
+  .promotion:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+
+  .promotion {
+    @extend .display-4;
+    font-size: 1.5rem;
+    color: white;
+
+    & > div {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .promotion:nth-child(1) {
+    background-color: $color-brown-medium;
+  }
+
+  .promotion:nth-child(2) {
+    color: black;
+    background-color: $color-brown-light;
+  }
+
+  .promotion:nth-child(3) {
+    background-color: $color-blue;
+  }
+}

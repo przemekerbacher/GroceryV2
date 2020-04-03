@@ -1,0 +1,47 @@
+.home {
+  .promotions {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+
+    .dairy,
+    .breadstuff,
+    .something {
+      background-position: center;
+      background-size: cover;
+
+      &::after {
+        display: block;
+        content: "";
+        width: 100%;
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .dairy {
+      background-image: url("/images/promotions/dairy.jpg");
+      height: 100vh;
+      width: 50%;
+    }
+
+    .right {
+      height: 100vh;
+      width: 50%;
+    }
+
+    .breadstuff,
+    .something {
+      height: 50%;
+    }
+
+    .breadstuff {
+      background-image: url("/images/promotions/something.jpg");
+    }
+
+    .something {
+      background-image: url("/images/promotions/breadstuff.jpg");
+    }
+  }
+}

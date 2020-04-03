@@ -1,0 +1,25 @@
+.products {
+  .filters {
+    .content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .filter {
+        flex-basis: 32%;
+      }
+    }
+    .price {
+      width: 100%;
+      div {
+        flex-grow: 1;
+      }
+    }
+    button {
+      justify-self: flex-end;
+      background: #64bfbd;
+      border-radius: 0;
+      color: white;
+      border-style: none;
+    }
+  }
+}

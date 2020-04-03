@@ -1,0 +1,30 @@
+.products {
+  .sort {
+    margin-right: auto;
+
+    li:not(:first-child) {
+      margin-left: 5px;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      color: $color-blue2;
+    }
+  }
+
+  svg {
+    color: #ddd;
+  }
+
+  svg.active {
+    color: $color-blue2;
+  }
+
+  .sort-icons {
+    display: flex;
+    margin-left: 5px;
+  }
+}

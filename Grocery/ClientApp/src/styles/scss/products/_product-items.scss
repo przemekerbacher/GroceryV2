@@ -1,0 +1,10 @@
+.products {
+  color: $color-text;
+
+  .product-items {
+    & > .row {
+      margin-left: -23px;
+      margin-right: -23px;
+    }
+  }
+}

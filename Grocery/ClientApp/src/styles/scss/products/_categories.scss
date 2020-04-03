@@ -1,0 +1,31 @@
+.categories {
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    text-decoration: none;
+    color: $color-text;
+    margin: 0;
+    padding: 10px;
+    transition: 0.5s border-bottom;
+    height: 100%;
+  }
+
+  .category {
+    padding: 0;
+    margin: 0;
+  }
+
+  .category span {
+    width: 1%;
+    opacity: 0;
+    border-bottom: 1px solid $color-text;
+    transition: 0.3s;
+  }
+  .category:hover span,
+  .category span.active {
+    display: block;
+    width: 100%;
+    opacity: 1;
+  }
+}

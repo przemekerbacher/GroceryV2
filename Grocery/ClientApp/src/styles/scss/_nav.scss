@@ -1,0 +1,34 @@
+nav.main {
+  @extend .navbar, .navbar-expand-lg;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  padding-top: 1rem;
+  background: linear-gradient(black, transparent);
+  font-family: $font-serif;
+
+  button {
+    font-size: 2rem;
+  }
+
+  .navbar-toggler {
+    color: white;
+  }
+
+  a {
+    color: white;
+  }
+  a:hover {
+    color: #ddd;
+  }
+
+  ul {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

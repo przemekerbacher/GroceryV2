@@ -1,0 +1,21 @@
+.pagination-element {
+  padding: 0;
+  .pagination {
+    border-radius: 0;
+    margin: 0;
+
+    .page-item.active .page-link {
+      background-color: $color-blue2;
+      border-color: $color-blue2;
+    }
+
+    button {
+      color: $color-blue2;
+    }
+
+    .btn {
+      cursor: pointer;
+      border-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.products {
+  .product-item {
+    overflow: hidden;
+    border-radius: 5%;
+
+    .wrap {
+      background-color: white;
+    }
+
+    input {
+      border-style: none;
+      outline: none;
+      border-radius: 0;
+    }
+
+    button {
+      border-radius: 0;
+      background-color: #f92b42;
+      border-style: none;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .price {
+      color: $color-green;
+      font-weight: bold;
+    }
+  }
+}
