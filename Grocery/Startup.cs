@@ -29,7 +29,8 @@ namespace Grocery
         {
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:3000"));
+                //c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:3000"));
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins("*"));
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -40,7 +41,7 @@ namespace Grocery
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(); 
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
@@ -78,9 +79,8 @@ namespace Grocery
 
             app.UseRouting();
 
-            app.UseCors(options => options.WithOrigins("http://localhost:3000"));
-
-
+            //app.UseCors(options => options.WithOrigins("http://localhost:3000"));
+            app.UseCors(options => options.WithOrigins("*"));
 
             app.UseAuthentication();
             app.UseIdentityServer();
