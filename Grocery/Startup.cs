@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Grocery.Helpers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Grocery
 {
@@ -30,8 +33,12 @@ namespace Grocery
             services.AddCors(c =>
             {
                 //c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:3000"));
-                c.AddPolicy("AllowOrigin", options => options.WithOrigins("*"));
+                //c.AddPolicy("AllowOrigin", options => options.WithOrigins("*"));
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins(Configuration["AllowOriginFrom:Any"]));
+
             });
+
+            services.Configure<JWT>(Configuration.GetSection("JWT"));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -41,10 +48,24 @@ namespace Grocery
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(); 
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Key"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -80,10 +101,10 @@ namespace Grocery
             app.UseRouting();
 
             //app.UseCors(options => options.WithOrigins("http://localhost:3000"));
-            app.UseCors(options => options.WithOrigins("*"));
+            app.UseCors(options => options.WithOrigins(Configuration["AllowOriginFrom:Any"]));
 
             app.UseAuthentication();
-            app.UseIdentityServer();
+            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
